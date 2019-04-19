@@ -2,11 +2,11 @@
 
 
 
-![图片1](.\pics\pic1.jpg)
+<img src="https://github.com/MurphyQT/BP_Algorithm_in_AI/raw/master/pics/pic1.jpg">
 
 ### 一、Batch Gradient Decent (BGD)
 
-![1552030092115](.\pics\pic2.png)
+<img src="https://github.com/MurphyQT/BP_Algorithm_in_AI/raw/master/pics/pic2.png">
 
 η为学习率，后面乘以的项为Loss function J(θ;x;y)的梯度，负学习率乘以梯度得到参数的增量Δθ，更新参数θ = θ + Δθ。
 
@@ -45,15 +45,15 @@
 
 刚说到SGD当数据稀疏时，容易遇到minibatch梯度不能有效近似真实梯度的情况。所以容易在模型训练过程中遇到梯度方向不稳定，”反复横跳“的现象：
 
-![1552032531626](.\pics\pic3.png)
+<img src="https://github.com/MurphyQT/BP_Algorithm_in_AI/raw/master/pics/pic3.png">
 
 因此，为了防止这样的情况，SGDM对SGD进行了一些改进：
 
-![1552032811507](.\pics\pic4.png)
+<img src="https://github.com/MurphyQT/BP_Algorithm_in_AI/raw/master/pics/pic4.png">
 
 设置了一个参数动量vt来记录之前t-1步迭代中梯度的加权和，然后把原来的公式：
 
-![1552030092115](.\pics\pic2.png)
+<img src="https://github.com/MurphyQT/BP_Algorithm_in_AI/raw/master/pics/pic2.png">
 
 中的θ增量Δθ换成了- γ × v(t-1) - η × gradient。
 
@@ -61,7 +61,7 @@
 
 当当前梯度方向与动量方向相同，那么能够加速向该方向迭代，反之，抑制当前梯度方向对模型迭代的影响。
 
-![1552033654812](.\pics\pic5.png)
+<img src="https://github.com/MurphyQT/BP_Algorithm_in_AI/raw/master/pics/pic5.png">
 
 棕色线是当前两步迭代的学习率*梯度；红色线是历史累计动量。蓝色线是不加动量，两步迭代的结果；绿色线是加了动量之后的结果。可以看到动量对于梯度“横跳”的抑制效果。
 
@@ -77,9 +77,9 @@
 
 #### 4.1 AdaGrad
 
-![1552196332843](.\pics\pic6.png)
+<img src="https://github.com/MurphyQT/BP_Algorithm_in_AI/raw/master/pics/pic6.png">
 
-![1552197277287](.\pics\pic7.jpg)
+<img src="https://github.com/MurphyQT/BP_Algorithm_in_AI/raw/master/pics/pic7.JPG">
 
  η是全局学习速率，实时学习速率等于η除以梯度的累计平方和的开方。这样可以保证学习速率是逐渐下降的。
 
@@ -97,7 +97,7 @@
 
 接上文，AdaGrad会导致在深度网络中，学习率到后期几乎为0，模型无法正常迭代的情况。RMSProp对AdaGrad做出了小小的改进：
 
-![1552198338353](.\pics\pic8.jpg)
+<img src="https://github.com/MurphyQT/BP_Algorithm_in_AI/raw/master/pics/pic8.JPG">
 
 γ是衰减系数，因此Gt并不会随t单调下降，之前的gt对当前学习率的影响会逐渐下降，同时Gt是增加还是减小取决于被γ衰减的多还是被（1-γ）gt * gt增加的多。
 
@@ -118,7 +118,7 @@
 
 Adam目前是CNN中较为主流的Optimizor。它采用了之前用到的对SGD的大部分优化算法。
 
-![1552199254838](.\pics\pic9.png)
+<img src="https://github.com/MurphyQT/BP_Algorithm_in_AI/raw/master/pics/pic9.png">
 
 ### 六、 Conclusions of Adaptive Methods
 
@@ -143,27 +143,27 @@ Adam目前是CNN中较为主流的Optimizor。它采用了之前用到的对SGD�
 
 #### 7.1 AMSGrad
 
-![1552199896209](.\pics\pic10.png)
+<img src="https://github.com/MurphyQT/BP_Algorithm_in_AI/raw/master/pics/pic10.png">
 
 AMSGrad对于Adam的优化在于，限制了vt的最大值，因此学习速率有了下限：
 
-![1552200019521](.\pics\pic11.png)
+<img src="https://github.com/MurphyQT/BP_Algorithm_in_AI/raw/master/pics/pic11.png">
 
 #### 7.2 AdaBound
 
 基本算法与Adam一致，区别在于对学习速率同时设上限和下限，同时上下限为动态边界， ηl下边界，ηu是上边界。
 
-![1552201733989](.\pics\pic12.png)
+<img src="https://github.com/MurphyQT/BP_Algorithm_in_AI/raw/master/pics/pic12.png">
 
 开始训练时，上限无穷大，下限为0，使模型自由迭代，快速降低Loss function,随着迭代步数t的增加，上下限开始发挥作用并逐渐缩小学习速率的取值范围。
 
 最后，t趋于无穷时，上下限都趋于同一个值，此时，学习速率可以视为恒定值。
 
-![1552201516582](.\pics\pic13.jpg)
+<img src="https://github.com/MurphyQT/BP_Algorithm_in_AI/raw/master/pics/pic13.JPG">
 
 SGDM可以视作lower bound=upper bound =α* 的特例；Adam可以视作lower bound = 0, upper bound = ∞ 的特例。
 
 **AdaBound可以视作是Adam随t逐渐向SGDM的平滑过渡。**
 
-![1552201888991](.\pics\pic14.png)
+<img src="https://github.com/MurphyQT/BP_Algorithm_in_AI/raw/master/pics/pic14.png">
 
