@@ -1,1 +1,1 @@
-自己整理的BP算法中文笔记
+Self written notes about collection and analysis of BP Algorithms
